@@ -38,14 +38,16 @@ class N26Parser(CsvStatementParser):
 
     mappings = {
         "date": 0,
-        "payee": 1,
-        "account_number": 2,
-        "trntype": 3,
-        "memo": 4,
-        "amount": 5,
-        "orig_amount": 6,
-        "orig_currency": 7,
-        "exchange_rate":8,
+        "date_user": 1,
+        "payee": 2,
+        "account_number": 3,
+        "trntype": 4,
+        "memo": 5,
+        "account_name": 6,
+        "amount": 7,
+        "orig_amount": 8,
+        "orig_currency": 9,
+        "exchange_rate": 10,
     }
 
     def parse(self):
@@ -98,6 +100,13 @@ class N26Parser(CsvStatementParser):
                 stmt_line.payee += f' ({account_number})'
             else:
                 stmt_line.payee = account_number
+
+        account_name = line[self.mappings["account_name"]]
+        if account_name:
+            if stmt_line.payee:
+                stmt_line.payee += f' - {account_name}'
+            else:
+                stmt_line.payee = account_name
 
         if stmt_line.orig_currency:
             exchange_rate = line[self.mappings["exchange_rate"]]

@@ -28,6 +28,9 @@ TYPE_MAPPING = {
     "MasterCard Payment": "POS",
     "Outgoing Transfer": "XFER",
     "Direct Debit": "XFER",
+    "Credit Transfer": "XFER",
+    "Debit Transfer": "XFER",
+    "Presentment": "POS",
 
     # Add translations for other statements
 }

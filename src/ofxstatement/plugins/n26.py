@@ -127,4 +127,8 @@ class N26Plugin(Plugin):
 
     def get_parser(self, filename: str) -> N26Parser:
         file = open(filename, "r", encoding='utf-8')
-        return N26Parser(file)
+        parser = N26Parser(file)
+        parser.statement.currency = self.settings.get("currency")
+        parser.statement.account_id = self.settings.get("account")
+        parser.statement.bank_id = self.settings.get("bank", "N26")
+        return parser

@@ -31,6 +31,7 @@ TYPE_MAPPING = {
     "Credit Transfer": "XFER",
     "Debit Transfer": "XFER",
     "Presentment": "POS",
+    "Reward": "CREDIT",
 
     # Add translations for other statements
 }
